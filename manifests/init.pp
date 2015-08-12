@@ -1,17 +1,16 @@
 # ex: syntax=puppet si ts=4 sw=4 et
 
 class bind (
-    $confdir         = undef,
-    $namedconf       = undef,
-    $cachedir        = undef,
-    $forwarders      = undef,
-    $dnssec          = undef,
-    $version         = undef,
-    $rndc            = undef,
-    $statistics_port = undef,
-    $random_device   = undef,
-) {
-    include ::bind::params
+    $confdir         = $::bind::params::confdir,
+    $namedconf       = $::bind::params::namedconf,
+    $cachedir        = $::bind::params::cachedir,
+    $forwarders      = $::bind::params::forwarders,
+    $dnssec          = $::bind::params::dnssec,
+    $version         = $::bind::params::version,
+    $rndc            = $::bind::params::rnde,
+    $statistics_port = $::bind::params::statistics_port,
+    $random_device   = $::bind::params::random_device,
+) inherits bind::params {
 
     $auth_nxdomain = false
 

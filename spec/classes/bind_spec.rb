@@ -23,8 +23,8 @@ describe 'bind' do
       })
     }
 
-    it { should contain_file('_NAMEDCONF_').that_requires('Package[bind]') }
-    it { should contain_file('_NAMEDCONF_').that_notifies('Service[bind]') }
+    it { should contain_file('/etc/bind/named.conf').that_requires('Package[bind]') }
+    it { should contain_file('/etc/bind/named.conf').that_notifies('Service[bind]') }
 
     it {
       should contain_service('bind').with({
@@ -54,8 +54,8 @@ describe 'bind' do
       })
     }
 
-    it { should contain_file('_NAMEDCONF_').that_requires('Package[bind]') }
-    it { should contain_file('_NAMEDCONF_').that_notifies('Service[bind]') }
+    it { should contain_file('/etc/named.conf').that_requires('Package[bind]') }
+    it { should contain_file('/etc/named.conf').that_notifies('Service[bind]') }
 
     it {
       should contain_service('bind').with({

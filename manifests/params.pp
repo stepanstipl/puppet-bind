@@ -1,18 +1,22 @@
 # ex: syntax=puppet si ts=4 sw=4 et
-
-class bind::params (
-    $supported,
-    $bind_user,
-    $bind_group,
-    $bind_package,
-    $bind_service,
-    $nsupdate_package,
-) {
-    unless $supported {
-        fail('Platform is not supported')
-    }
+class bind::params {
+    $forwarders    = ''
+    $dnssec        = true
+    $version       = ''
+    $random_device = '/dev/random'
 
     if $::osfamily == 'Debian' {
+        $bind_user        = 'bind'
+        $bind_group       = 'bind'
+        $bind_package     = 'bind9'
+        $bind_service     = 'bind9'
+        $nsupdate_package = 'dnsutils'
+        $namedconf        = '/etc/bind/named.conf'
+        $confdir          = '/etc/bind'
+        $cachedir         = '/var/cache/bind'
+        $rndc             = true
+        $updater_keydir   = '/etc/bind/keys'
+
         $bind_files = [
             "${::bind::confdir}/bind.keys",
             "${::bind::confdir}/db.empty",
@@ -26,6 +30,20 @@ class bind::params (
         ]
     }
     elsif $::osfamily == 'RedHat' {
+        $bind_user        = 'named'
+        $bind_group       = 'named'
+        $bind_package     = 'bind'
+        $bind_service     = 'named'
+        $nsupdate_package = 'bind-utils'
+        $namedconf        = '/etc/named.conf'
+        $confdir          = '/etc/named'
+        $cachedir         = '/var/named'
+        $rndc             = true
+
+        $updater_keydir   = '/etc/named/keys'
         $bind_files = ['/etc/named.root.key']
+    }
+    else {
+        fail('Platform is not supported')
     }
 }
