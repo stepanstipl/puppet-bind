@@ -10,6 +10,7 @@ class bind (
     $rndc            = undef,
     $statistics_port = undef,
     $random_device   = undef,
+    $max_ncache_ttl  = undef
 ) {
     include ::bind::params
 
