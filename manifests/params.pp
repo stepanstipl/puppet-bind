@@ -1,9 +1,10 @@
 # ex: syntax=puppet si ts=4 sw=4 et
 class bind::params {
-    $forwarders    = ''
-    $dnssec        = true
-    $version       = ''
-    $random_device = '/dev/random'
+    $forwarders     = ''
+    $dnssec         = true
+    $version        = ''
+    $random_device  = '/dev/random'
+    $max_ncache_ttl = undef
 
     if $::osfamily == 'Debian' {
         $bind_user        = 'bind'

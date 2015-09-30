@@ -10,8 +10,8 @@ class bind (
     $rndc            = $::bind::params::rnde,
     $statistics_port = $::bind::params::statistics_port,
     $random_device   = $::bind::params::random_device,
+    $max_ncache_ttl  = $::bind::params::max_ncache_ttl
 ) inherits bind::params {
-
     $auth_nxdomain = false
 
     File {
